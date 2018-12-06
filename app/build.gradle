@@ -6,6 +6,7 @@ apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "io.chuuhomg.beers"
         minSdkVersion 15
@@ -13,12 +14,20 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://api.punkapi.com/v2/\"")
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 kapt {
