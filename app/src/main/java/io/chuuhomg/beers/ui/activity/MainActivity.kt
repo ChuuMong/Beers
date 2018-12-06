@@ -1,7 +1,8 @@
-package io.chuuhomg.beers
+package io.chuuhomg.beers.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import io.chuuhomg.beers.R
 
 class MainActivity : AppCompatActivity() {
 
