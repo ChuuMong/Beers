@@ -2,6 +2,12 @@ package io.chuuhomg.beers.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
+enum class BeerViewType {
+    VIEW_TYPE_01,
+    VIEW_TYPE_02,
+    VIEW_TYPE_03
+}
+
 data class Beer(
     val id: Int,
     val name: String,
@@ -27,5 +33,6 @@ data class Beer(
     @SerializedName("brewers_tips")
     val brewersTips: String,
     @SerializedName("contributed_by")
-    val contributedBy: String
+    val contributedBy: String,
+    var viewType: BeerViewType
 )
