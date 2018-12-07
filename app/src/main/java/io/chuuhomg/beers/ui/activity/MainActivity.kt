@@ -10,8 +10,7 @@ import io.chuuhomg.beers.data.remote.model.Beer
 import io.chuuhomg.beers.presenter.main.MainPresenter
 import io.chuuhomg.beers.presenter.main.MainView
 import io.chuuhomg.beers.ui.adapter.BeersAdapter
-import io.chuuhomg.beers.util.hide
-import io.chuuhomg.beers.util.show
+import io.chuuhomg.beers.ui.weiget.InfiniteScrollListener
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -26,6 +25,7 @@ class MainActivity : DaggerAppCompatActivity(), MainView {
 
     private lateinit var beersAdapter: BeersAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,26 +34,32 @@ class MainActivity : DaggerAppCompatActivity(), MainView {
 
         beersAdapter = BeersAdapter()
         listBeers.adapter = beersAdapter
+        listBeers.addOnScrollListener(object : InfiniteScrollListener() {
+            override fun onLoadMore() {
+                presenter.getBeers()
+            }
+        })
+
+        swipeRefreshLayout.setOnRefreshListener {
+            beersAdapter.clear()
+            presenter.initGetBeers()
+        }
 
         presenter.attachView(this)
-        presenter.getBeers(1)
+        presenter.getBeers()
     }
 
     override fun resultBeers(beers: List<Beer>) {
+        if (swipeRefreshLayout.isRefreshing) {
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         beersAdapter.addAll(beers)
     }
 
     override fun showErrorMessage(throwable: Throwable) {
         Log.e(TAG, throwable.message, throwable)
         Toast.makeText(this, throwable.message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun showProgress() {
-        progress.show()
-    }
-
-    override fun hideProgress() {
-        progress.hide()
     }
 
     override fun onDestroy() {

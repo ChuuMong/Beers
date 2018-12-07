@@ -50,13 +50,18 @@ class BeersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun addAll(beers: List<Beer>) {
-        this.beers.clear()
         this.beers.addAll(beers)
 
         notifyDataSetChanged()
     }
 
     private fun getItem(position: Int) = beers[position]
+    
+    fun clear() {
+        beers.clear()
+
+        notifyDataSetChanged()
+    }
 
     inner class BeerType01ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

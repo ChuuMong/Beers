@@ -13,12 +13,19 @@ constructor(private val repository: BeerRepository) : Presenter<MainView>() {
         private const val GET_PAGE_COUNT = 20
     }
 
-    fun getBeers(page: Int) {
-        view?.showProgress()
+    private var page = 1
+    private var isGetBeers = false
+
+    fun getBeers() {
+        if (isGetBeers) {
+            return
+        }
+
+        isGetBeers = true
 
         disposable.add(repository.getBeers(page, GET_PAGE_COUNT).doFinally {
-            view?.hideProgress()
-        }.map {
+            isGetBeers = false
+        }.filter { !it.isEmpty() }.map {
             it.forEach { item ->
                 val type = Random.nextInt(0, 3)
                 when (type) {
@@ -30,10 +37,22 @@ constructor(private val repository: BeerRepository) : Presenter<MainView>() {
             it
         }.subscribe({
             view?.resultBeers(it)
+            addPage()
         }, {
             view?.showErrorMessage(it)
         }
         ))
     }
 
+    fun initGetBeers() {
+        disposable.clear()
+        page = 1
+        isGetBeers = false
+
+        getBeers()
+    }
+
+    private fun addPage() {
+        page += 1
+    }
 }
