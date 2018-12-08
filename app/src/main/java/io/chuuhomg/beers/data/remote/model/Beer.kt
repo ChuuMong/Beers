@@ -1,6 +1,9 @@
 package io.chuuhomg.beers.data.remote.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 enum class BeerViewType {
     VIEW_TYPE_01,
@@ -8,12 +11,11 @@ enum class BeerViewType {
     VIEW_TYPE_03
 }
 
+@Parcelize
 data class Beer(
     val id: Int,
     val name: String,
     val tagline: String,
-    @SerializedName("first_brewed")
-    val firstBrewed: String,
     val description: String,
     @SerializedName("image_url")
     val image: String,
@@ -29,10 +31,9 @@ data class Beer(
      * 맥주의 색깔 지수
      */
     val srm: Float,
-    val foodPairings: List<String>,
+    @SerializedName("food_pairing")
+    val foodPairing: List<String>,
     @SerializedName("brewers_tips")
     val brewersTips: String,
-    @SerializedName("contributed_by")
-    val contributedBy: String,
     var viewType: BeerViewType
-)
+) : Parcelable

@@ -1,7 +1,6 @@
 package io.chuuhomg.beers.ui.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import io.chuuhomg.beers.data.remote.model.Beer
 import io.chuuhomg.beers.data.remote.model.BeerViewType
 import io.chuuhomg.beers.util.loadUrl
 
-class BeersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BeersAdapter(private val listener: OnClickBeerItemListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val beers = mutableListOf<Beer>()
 
@@ -56,14 +55,21 @@ class BeersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private fun getItem(position: Int) = beers[position]
-    
+
     fun clear() {
         beers.clear()
 
         notifyDataSetChanged()
     }
 
-    inner class BeerType01ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    abstract inner class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        fun setOnClickListener(tvName: TextView, ivBeer: ImageView, beer: Beer) {
+            itemView.setOnClickListener { listener.onClickBeerItem(tvName, ivBeer, beer) }
+        }
+    }
+
+    inner class BeerType01ViewHolder(view: View) : BaseViewHolder(view) {
 
         private val tvName: TextView = itemView.findViewById(R.id.tvName)
         private val ivBeer: ImageView = itemView.findViewById(R.id.ivBeer)
@@ -77,10 +83,12 @@ class BeersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             tvAbv.text = beer.abv.toString()
             tvIbu.text = beer.ibu.toString()
             tvSrm.text = beer.srm.toString()
+
+            setOnClickListener(tvName, ivBeer, beer)
         }
     }
 
-    inner class BeerType02ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class BeerType02ViewHolder(view: View) : BaseViewHolder(view) {
 
         private val tvName: TextView = itemView.findViewById(R.id.tvName)
         private val ivBeer: ImageView = itemView.findViewById(R.id.ivBeer)
@@ -94,10 +102,12 @@ class BeersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             tvAbv.text = beer.abv.toString()
             tvIbu.text = beer.ibu.toString()
             tvSrm.text = beer.srm.toString()
+
+            setOnClickListener(tvName, ivBeer, beer)
         }
     }
 
-    inner class BeerType03ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class BeerType03ViewHolder(view: View) : BaseViewHolder(view) {
 
         private val tvName: TextView = itemView.findViewById(R.id.tvName)
         private val ivBeer: ImageView = itemView.findViewById(R.id.ivBeer)
@@ -109,6 +119,12 @@ class BeersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             ivBeer.loadUrl(beer.image)
             tvTagLine.text = beer.tagline
             tvDescription.text = beer.description
+
+            setOnClickListener(tvName, ivBeer, beer)
         }
     }
+}
+
+interface OnClickBeerItemListener {
+    fun onClickBeerItem(tvName: TextView, ivBeer: ImageView, beer: Beer)
 }
