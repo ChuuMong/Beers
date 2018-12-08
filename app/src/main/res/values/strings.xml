@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Beers</string>
+
     <string name="abv">도수</string>
     <string name="ibu">쓴 정도</string>
     <string name="srm">색깔</string>
+
+    <string name="beer_name">beer_name</string>
+    <string name="beer_image">beer_image</string>
+    <string name="food_pairing">Food Pairing : </string>
+    <string name="brewers_tips">Brewers Tips : </string>
+    <string name="buy">구매하기</string>
+
+    <string name="double_quote_string">\"%1$s\"</string>
 </resources>
