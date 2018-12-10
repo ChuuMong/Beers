@@ -1,6 +1,5 @@
-package io.chuuhomg.beers.data.remote.model
+package io.chuuhomg.beers.data.model
 
-import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -19,6 +18,7 @@ data class Beer(
     val description: String,
     @SerializedName("image_url")
     val image: String,
+    var price: Double,
     /**
      * 맥주의 도수
      */

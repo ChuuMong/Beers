@@ -1,5 +1,6 @@
 package io.chuuhomg.beers.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
@@ -12,12 +13,14 @@ import android.widget.TextView
 import android.widget.Toast
 import dagger.android.support.DaggerAppCompatActivity
 import io.chuuhomg.beers.R
-import io.chuuhomg.beers.data.remote.model.Beer
+import io.chuuhomg.beers.data.model.Beer
+import io.chuuhomg.beers.event.UserBuyBeerEvent
 import io.chuuhomg.beers.presenter.main.MainPresenter
 import io.chuuhomg.beers.presenter.main.MainView
 import io.chuuhomg.beers.ui.adapter.BeersAdapter
 import io.chuuhomg.beers.ui.adapter.OnClickBeerItemListener
 import io.chuuhomg.beers.ui.weiget.InfiniteScrollListener
+import io.chuuhomg.beers.util.EventBus
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -32,6 +35,7 @@ class MainActivity : DaggerAppCompatActivity(), MainView, OnClickBeerItemListene
 
     private lateinit var beersAdapter: BeersAdapter
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,6 +53,14 @@ class MainActivity : DaggerAppCompatActivity(), MainView, OnClickBeerItemListene
         swipeRefreshLayout.setOnRefreshListener {
             beersAdapter.clear()
             presenter.initGetBeers()
+        }
+
+        EventBus.register().subscribe {
+            if (it is UserBuyBeerEvent) {
+                Toast.makeText(this,
+                    getString(R.string.result_user_buy_beer, it.user.userName, it.beer.name),
+                    Toast.LENGTH_SHORT).show()
+            }
         }
 
         presenter.attachView(this)

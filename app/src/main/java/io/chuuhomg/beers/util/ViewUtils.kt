@@ -16,5 +16,5 @@ fun View.hide() {
 
 @SuppressLint("CheckResult")
 fun ImageView.loadUrl(url: String) {
-    Glide.with(this.context).load(url).apply(RequestOptions().centerCrop()).into(this)
+    Glide.with(this.context).load(url).apply(RequestOptions().fitCenter()).into(this)
 }
