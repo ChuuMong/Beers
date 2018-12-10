@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Beers</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="abv">도수</string>
     <string name="ibu">쓴 정도</string>
     <string name="srm">색깔</string>
@@ -30,5 +33,9 @@
     <string name="need_input_user_contract">주문자 연락처를 입력해주세요.</string>
     
     <string name="result_user_buy_beer">%1$s이(가) %2$s을 구입하였습니다.</string>
+
+    <string name="filter">Filter</string>
+    <string name="filter_price">가격</string>
+    <string name="filter_any">Any</string>
 
 </resources>
