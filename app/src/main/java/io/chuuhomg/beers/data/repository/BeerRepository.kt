@@ -1,7 +1,7 @@
 package io.chuuhomg.beers.data.repository
 
 import io.chuuhomg.beers.data.remote.api.ApiService
-import io.chuuhomg.beers.data.remote.model.Beer
+import io.chuuhomg.beers.data.model.Beer
 import io.reactivex.Single
 import javax.inject.Inject
 

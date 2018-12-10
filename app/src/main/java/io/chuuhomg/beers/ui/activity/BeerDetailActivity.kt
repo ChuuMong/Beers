@@ -5,7 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import io.chuuhomg.beers.R
-import io.chuuhomg.beers.data.remote.model.Beer
+import io.chuuhomg.beers.data.model.Beer
 import io.chuuhomg.beers.util.loadUrl
 import kotlinx.android.synthetic.main.activity_beer_detail.*
 import java.lang.IllegalArgumentException

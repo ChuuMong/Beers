@@ -2,13 +2,16 @@ package io.chuuhomg.beers.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import io.chuuhomg.beers.R
-import io.chuuhomg.beers.data.remote.model.Beer
+import io.chuuhomg.beers.data.model.Beer
+import io.chuuhomg.beers.data.model.User
+import io.chuuhomg.beers.event.UserBuyBeerEvent
+import io.chuuhomg.beers.util.EventBus
 import io.chuuhomg.beers.util.loadUrl
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_beer_buy.*
@@ -68,20 +71,28 @@ class BeerBuyActivity : AppCompatActivity() {
         }
 
         btnBuy.setOnClickListener {
-            if (checkInputUserInfo()) {
+            val userName = etUserName.text.toString()
+            val userAddress = etUserAddress.text.toString()
+            val userContract = etUserContract.text.toString()
+
+            (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
+                .hideSoftInputFromWindow(
+                    etUserContract.windowToken,
+                    0
+                )
+
+            if (checkInputUserInfo(userName, userAddress, userContract)) {
                 return@setOnClickListener
             }
+
+            EventBus.send(UserBuyBeerEvent(User(userName, userAddress, userContract), beer))
 
             setResult(Activity.RESULT_OK)
             finish()
         }
     }
 
-    private fun checkInputUserInfo(): Boolean {
-        val userName = etUserName.text.toString()
-        val userAddress = etUserAddress.text.toString()
-        val userContract = etUserContract.text.toString()
-
+    private fun checkInputUserInfo(userName: String, userAddress: String, userContract: String): Boolean {
         if (userName.isEmpty()) {
             Toast.makeText(this, R.string.need_input_user_name, Toast.LENGTH_SHORT).show()
             return true

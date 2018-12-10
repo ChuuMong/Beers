@@ -1,6 +1,6 @@
 package io.chuuhomg.beers.presenter.main
 
-import io.chuuhomg.beers.data.remote.model.BeerViewType
+import io.chuuhomg.beers.data.model.BeerViewType
 import io.chuuhomg.beers.data.repository.BeerRepository
 import io.chuuhomg.beers.presenter.Presenter
 import javax.inject.Inject

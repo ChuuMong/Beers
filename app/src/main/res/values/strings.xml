@@ -28,5 +28,7 @@
     <string name="need_input_user_name">주문자 이름을 입력해주세요.</string>
     <string name="need_input_user_address">주문자 주소를 입력해주세요.</string>
     <string name="need_input_user_contract">주문자 연락처를 입력해주세요.</string>
+    
+    <string name="result_user_buy_beer">%1$s이(가) %2$s을 구입하였습니다.</string>
 
 </resources>

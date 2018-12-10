@@ -1,6 +1,6 @@
 package io.chuuhomg.beers.data.remote.api
 
-import io.chuuhomg.beers.data.remote.model.Beer
+import io.chuuhomg.beers.data.model.Beer
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
