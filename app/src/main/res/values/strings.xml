@@ -7,9 +7,26 @@
 
     <string name="beer_name">beer_name</string>
     <string name="beer_image">beer_image</string>
-    <string name="food_pairing">Food Pairing : </string>
-    <string name="brewers_tips">Brewers Tips : </string>
+    <string name="food_pairing">Food Pairing</string>
+    <string name="brewers_tips">Brewers Tips</string>
     <string name="buy">구매하기</string>
 
     <string name="double_quote_string">\"%1$s\"</string>
+
+    <string name="user_name">이름</string>
+    <string name="user_address">주소</string>
+    <string name="user_contract">연락처</string>
+
+    <string name="buy_quantity">구매수량</string>
+    <string name="buy_decrease">-</string>
+    <string name="buy_increase">+</string>
+    <string name="buy_total_price">합계 금액</string>
+
+    <string name="buy_min_quantity">구매 가능한 최소 수량입니다.</string>
+    <string name="buy_max_quantity">구매 가능한 최대 수량입니다.</string>
+
+    <string name="need_input_user_name">주문자 이름을 입력해주세요.</string>
+    <string name="need_input_user_address">주문자 주소를 입력해주세요.</string>
+    <string name="need_input_user_contract">주문자 연락처를 입력해주세요.</string>
+
 </resources>

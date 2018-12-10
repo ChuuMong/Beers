@@ -19,6 +19,7 @@ data class Beer(
     val description: String,
     @SerializedName("image_url")
     val image: String,
+    var price: Double,
     /**
      * 맥주의 도수
      */

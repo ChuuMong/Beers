@@ -23,18 +23,30 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tvBeerName"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:textColor="@android:color/white"
+            android:layout_marginLeft="8dp"
+            android:textColor="@android:color/black"
             android:textSize="48sp"
             android:transitionName="@string/beer_name"
-            app:layout_constraintBottom_toBottomOf="@+id/ivBeer"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivBeer"
             tools:text="Beer"/>
+
+        <TextView
+            android:id="@+id/tvBeerPrice"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBeerName"
+            tools:text="$12.4"/>
 
         <TextView
             android:id="@+id/tvTagLine"
@@ -49,7 +61,7 @@
             android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivBeer"
+            app:layout_constraintTop_toBottomOf="@id/tvBeerPrice"
             tools:text="&quot;A Real Bitter Experience.&quot;"/>
 
         <TextView
@@ -82,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/tvDescription"
@@ -103,7 +115,7 @@
             android:id="@+id/tvIbu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/tvAbv"
@@ -124,7 +136,7 @@
             android:id="@+id/tvSrm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/tvIbu"
@@ -134,11 +146,9 @@
             android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             app:barrierDirection="right"
             app:constraint_referenced_ids="tvIbuTitle,tvSrmTitle,tvAbvTitle"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
         <TextView
             android:id="@+id/tvFoodPairingTitle"
@@ -146,6 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
+            android:textStyle="bold"
             android:text="@string/food_pairing"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -169,6 +180,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textStyle="bold"
             android:layout_marginLeft="8dp"
             android:text="@string/brewers_tips"
             android:textSize="18sp"

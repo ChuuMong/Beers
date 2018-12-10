@@ -28,11 +28,14 @@ constructor(private val repository: BeerRepository) : Presenter<MainView>() {
         }.filter { !it.isEmpty() }.map {
             it.forEach { item ->
                 val type = Random.nextInt(0, 3)
+                val price = Random.nextDouble(5.toDouble(), 20.toDouble())
                 when (type) {
                     0 -> item.viewType = BeerViewType.VIEW_TYPE_01
                     1 -> item.viewType = BeerViewType.VIEW_TYPE_02
                     2 -> item.viewType = BeerViewType.VIEW_TYPE_03
                 }
+
+                item.price = price
             }
             it
         }.subscribe({
