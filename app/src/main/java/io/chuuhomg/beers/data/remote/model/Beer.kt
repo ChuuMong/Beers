@@ -1,4 +1,4 @@
-package io.chuuhomg.beers.data.model
+package io.chuuhomg.beers.data.remote.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

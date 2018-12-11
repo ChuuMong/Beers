@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import io.chuuhomg.beers.R
-import io.chuuhomg.beers.data.model.Beer
-import io.chuuhomg.beers.data.model.BeerViewType
+import io.chuuhomg.beers.data.remote.model.Beer
+import io.chuuhomg.beers.data.remote.model.BeerViewType
 import io.chuuhomg.beers.util.BeerFilterManger
 import io.chuuhomg.beers.util.BeerFilterType
 import io.chuuhomg.beers.util.loadUrl

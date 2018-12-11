@@ -1,6 +1,6 @@
 package io.chuuhomg.beers.util
 
-import io.chuuhomg.beers.data.model.Beer
+import io.chuuhomg.beers.data.remote.model.Beer
 
 class BeerFilterManger {
 

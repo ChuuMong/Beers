@@ -8,7 +8,7 @@ import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import io.chuuhomg.beers.R
-import io.chuuhomg.beers.data.model.Beer
+import io.chuuhomg.beers.data.local.model.Beer
 import io.chuuhomg.beers.data.model.User
 import io.chuuhomg.beers.event.UserBuyBeerEvent
 import io.chuuhomg.beers.util.EventBus
@@ -22,7 +22,7 @@ import java.util.*
 class BeerBuyActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_BEER = "EXTRA_BEER"
+        const val EXTRA_BEER = "EXTRA_BEER_ID"
 
         private const val MIN_BEER_BUY_QUANTITY = 1
         private const val MAX_BEER_BUY_QUANTITY = 999
@@ -41,10 +41,11 @@ class BeerBuyActivity : AppCompatActivity() {
         val beer = intent.getParcelableExtra<Beer>(EXTRA_BEER) ?: throw IllegalArgumentException()
 
         tvBeerName.text = beer.name
-        tvBeerPrice.text = getCurrencyPrice(beer.price)
-        ivBeer.loadUrl(beer.image)
 
-        setQuantityView(beer.price)
+        tvBeerPrice.text = getCurrencyPrice(beer.price!!)
+        ivBeer.loadUrl(beer.image!!)
+
+        setQuantityView(beer.price!!)
 
         quantityPriceSubject.map {
             if (it) {
@@ -52,7 +53,7 @@ class BeerBuyActivity : AppCompatActivity() {
             } else {
                 --quantity
             }
-        }.map { it * beer.price }.subscribe { setQuantityView(it) }
+        }.map { it * beer.price!! }.subscribe { setQuantityView(it) }
 
         btnQuantityDecrease.setOnClickListener {
             if (checkMinQuantity()) {
