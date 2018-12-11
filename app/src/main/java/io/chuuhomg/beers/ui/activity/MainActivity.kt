@@ -15,7 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import dagger.android.support.DaggerAppCompatActivity
 import io.chuuhomg.beers.R
-import io.chuuhomg.beers.data.model.Beer
+import io.chuuhomg.beers.data.remote.model.Beer
 import io.chuuhomg.beers.event.UserBuyBeerEvent
 import io.chuuhomg.beers.presenter.main.MainPresenter
 import io.chuuhomg.beers.presenter.main.MainView
@@ -72,9 +72,11 @@ class MainActivity : DaggerAppCompatActivity(), MainView, OnClickBeerItemListene
 
         EventBus.register().subscribe {
             if (it is UserBuyBeerEvent) {
-                Toast.makeText(this,
+                Toast.makeText(
+                    this,
                     getString(R.string.result_user_buy_beer, it.user.userName, it.beer.name),
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -156,7 +158,7 @@ class MainActivity : DaggerAppCompatActivity(), MainView, OnClickBeerItemListene
 
     override fun onClickBeerItem(tvName: TextView, ivBeer: ImageView, beer: Beer) {
         val intent = Intent(this, BeerDetailActivity::class.java)
-        intent.putExtra(BeerDetailActivity.EXTRA_BEER, beer)
+        intent.putExtra(BeerDetailActivity.EXTRA_BEER_ID, beer.id)
 
         val tvPair = Pair.create(tvName as View, getString(R.string.beer_name))
         val ivPair = Pair.create(ivBeer as View, getString(R.string.beer_image))
@@ -174,7 +176,7 @@ class MainActivity : DaggerAppCompatActivity(), MainView, OnClickBeerItemListene
             drawerLayout.closeDrawer(Gravity.END)
             return
         }
-        
+
         super.onBackPressed()
     }
 

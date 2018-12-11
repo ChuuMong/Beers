@@ -1,6 +1,6 @@
 package io.chuuhomg.beers.presenter.main
 
-import io.chuuhomg.beers.data.model.Beer
+import io.chuuhomg.beers.data.remote.model.Beer
 import io.chuuhomg.beers.presenter.View
 
 
